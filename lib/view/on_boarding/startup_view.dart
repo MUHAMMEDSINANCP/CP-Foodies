@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/common/globs.dart';
+import 'package:food_delivery_app/common/color_extension.dart';
 import 'package:food_delivery_app/view/login/welcom_view.dart';
-import 'package:food_delivery_app/view/main_tabview/main_tab_view.dart';
 
 class StartupView extends StatefulWidget {
   const StartupView({super.key});
@@ -13,26 +12,23 @@ class StartupView extends StatefulWidget {
 class _StartupViewState extends State<StartupView> {
   @override
   void initState() {
+    _navigateToNextPage();
+
     super.initState();
-    goWelcomePage();
   }
 
-  void goWelcomePage() async {
-    await Future.delayed(const Duration(seconds: 2));
-    welcomePage();
-  }
-
-  void welcomePage() {
-     
-     
-  if (Globs.udValueBool(Globs.userLogin)) {  Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const MainTabView()));
-   }else{
-      Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const WelcomeView()));
-  }
-
-  
+  void _navigateToNextPage() {
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) {
+        // Check if the widget is still mounted
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const WelcomeView(),
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -40,20 +36,32 @@ class _StartupViewState extends State<StartupView> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
+      backgroundColor: TColor.primary,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/img/splash_init.png",
-            width: media.width,
-            height: media.height,
-            fit: BoxFit.cover,
+            "assets/img/favorites_btn.png",
+            width: 70,
+            height: 70,
           ),
-          Image.asset(
-            "assets/img/app_logo.png",
-            width: media.width * 0.55,
-            height: media.width * 0.55,
-            fit: BoxFit.contain,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: media.width * 0.19, top: 7),
+                child: const Text(
+                  "Powered by CP Technologies",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       ),

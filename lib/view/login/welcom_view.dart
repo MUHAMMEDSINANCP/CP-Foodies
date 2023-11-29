@@ -26,32 +26,37 @@ class _WelcomeViewState extends State<WelcomeView> {
                   "assets/img/welcome_top_shape.png",
                   fit: BoxFit.cover,
                   width: double.infinity,
-                ), 
-                Image.asset(
-                  "assets/img/app_logo.png",
-                  width: media.width * 0.55,
-                  height: media.width * 0.45,
-                  fit: BoxFit.contain,
-                )
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: media.width * 0.30),
+                  child: Text(
+                    "CP Foodies",
+                    style: TextStyle(
+                        letterSpacing: 3,
+                        color: TColor.primary,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    "Discover the best foods from over 1,000\nrestaurants and fast delivery to your\ndoorstep",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: TColor.secondaryText,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
               ],
             ),
           ),
-          SizedBox(
-            height: media.width * 0.1,
-          ),
-          Text(
-            "Discover the best foods from over 1,000\nrestaurants and fast delivery to your\ndoorstep",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: TColor.secondaryText,
-                fontSize: 13,
-                fontWeight: FontWeight.w500),
-          ),
-          SizedBox(
-            height: media.width * 0.1,
+          const SizedBox(
+            height: 20,
           ),
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 1),
               child: RoundButton(
                 onPressed: () {
                   Navigator.push(
@@ -79,9 +84,9 @@ class _WelcomeViewState extends State<WelcomeView> {
               type: RoundButtonType.textPrimary,
             ),
           ),
-          const SizedBox(
-            height: 20,
-          )
+          SizedBox(
+            height: media.width * 0.43,
+          ),
         ],
       ),
     );

@@ -30,9 +30,12 @@ dependencies:
   intl: ^0.18.1
   otp_pin_field: ^1.2.2
   shared_preferences: ^2.2.1
+  firebase_core: ^2.16.0
+  firebase_auth: ^4.10.0
+  cloud_firestore: ^4.9.2
 
 dev_dependencies:
-  flutter_lints: ^2.0.0 
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
 

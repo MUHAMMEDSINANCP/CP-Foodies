@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/common/color_extension.dart';
 import 'package:food_delivery_app/common_widget/round_button.dart';
-import 'package:food_delivery_app/view/login/new_password_view.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
 
 class OTPView extends StatefulWidget {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "626014583444",
+    "project_id": "cp-foodies",
+    "storage_bucket": "cp-foodies.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626014583444:android:e2d75eb4b1becca2f6d281",
+        "android_client_info": {
+          "package_name": "com.example.food_delivery_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLS50khhO1R_hpFHR2Ardd_qZS9xCR2nE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

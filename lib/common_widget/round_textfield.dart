@@ -8,6 +8,8 @@ class RoundTextField extends StatelessWidget {
   final bool obscureText;
   final Color? bgColor;
   final Widget? left;
+  final Widget? suffixIcon;
+  final String? Function(String?)? validator;
 
   const RoundTextField(
       {super.key,
@@ -16,7 +18,9 @@ class RoundTextField extends StatelessWidget {
       this.keyboardType,
       this.obscureText = false,
       this.bgColor,
-      this.left});
+      this.left,
+      this.suffixIcon,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +39,14 @@ class RoundTextField extends StatelessWidget {
               child: left!,
             ),
           Expanded(
-            child: TextField(
+            child: TextFormField(
+              validator: validator,
               autocorrect: false,
               controller: controller,
               obscureText: obscureText,
               keyboardType: keyboardType,
               decoration: InputDecoration(
+                suffixIcon: suffixIcon,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 20,
                 ),
@@ -62,12 +68,13 @@ class RoundTextField extends StatelessWidget {
 
 class RoundedTitleTextField extends StatelessWidget {
   final TextEditingController? controller;
-  final String hintText;
-  final String title;
+  final String? hintText;
+  final String? title;
   final TextInputType? keyboardType;
   final bool obscureText;
   final Color? bgColor;
   final Widget? left;
+  final Widget? suffixIcon;
 
   const RoundedTitleTextField(
       {super.key,
@@ -77,7 +84,8 @@ class RoundedTitleTextField extends StatelessWidget {
       this.obscureText = false,
       this.bgColor,
       this.left,
-      required this.title});
+      this.title,
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +119,7 @@ class RoundedTitleTextField extends StatelessWidget {
                     obscureText: obscureText,
                     keyboardType: keyboardType,
                     decoration: InputDecoration(
+                      suffixIcon: suffixIcon,
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 20,
                       ),
@@ -126,11 +135,14 @@ class RoundedTitleTextField extends StatelessWidget {
                 ),
                 Container(
                   height: 55,
-                  margin: const EdgeInsets.only(top: 10, left: 20),
+                  margin: const EdgeInsets.only(left: 10),
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    title,
-                    style: TextStyle(color: TColor.placeholder, fontSize: 11),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      title ?? "",
+                      style: TextStyle(color: TColor.placeholder, fontSize: 11),
+                    ),
                   ),
                 ),
               ],

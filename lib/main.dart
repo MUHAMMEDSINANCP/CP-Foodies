@@ -1,32 +1,26 @@
-import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:food_delivery_app/common/color_extension.dart';
-import 'package:food_delivery_app/common/globs.dart';
 import 'package:food_delivery_app/common/locator.dart';
-import 'package:food_delivery_app/common/my_http_overrides.dart';
-import 'package:food_delivery_app/common/service_call.dart';
-import 'package:food_delivery_app/view/login/welcom_view.dart';
-import 'package:food_delivery_app/view/main_tabview/main_tab_view.dart';
+import 'package:food_delivery_app/firebase_options.dart';
 import 'package:food_delivery_app/view/on_boarding/startup_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'view/main_tabview/main_tab_view.dart';
 
 SharedPreferences? prefs;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setUpLocator();
 
-  HttpOverrides.global = MyHttpOverrides();
-  WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
 
-  if (Globs.udValueBool(Globs.userLogin)) {
-    ServiceCall.userPayload = Globs.udValue(Globs.userPayload);
-  }
   runApp(
-    const MyApp(
-      defaultHome: StartupView(),
-    ),
+    const MyApp(),
   );
 }
 
@@ -45,8 +39,9 @@ void configLoading() {
 }
 
 class MyApp extends StatefulWidget {
-  final Widget defaultHome;
-  const MyApp({super.key, required this.defaultHome});
+  const MyApp({
+    super.key,
+  });
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -58,13 +53,21 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'CP Foodies',
       theme: ThemeData(
         fontFamily: "Metropolis",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const WelcomeView(),
+      home: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data != null) {
+              return const MainTabView();
+            } else {
+              return const StartupView();
+            }
+          }),
       navigatorKey: locator<NavigationService>().navigatorKey,
       builder: (context, child) {
         return FlutterEasyLoading(child: child);
