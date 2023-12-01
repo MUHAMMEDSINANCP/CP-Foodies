@@ -78,7 +78,7 @@ class _ProfileViewState extends State<ProfileView> {
     }
   }
 
-  void _updateUserDetails() async {
+  void updateUserDetails() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       try {
@@ -234,6 +234,7 @@ class _ProfileViewState extends State<ProfileView> {
               TextButton.icon(
                 onPressed: () async {
                   image = await picker.pickImage(source: ImageSource.gallery);
+
                   setState(() {});
                 },
                 icon: Icon(
@@ -326,7 +327,7 @@ class _ProfileViewState extends State<ProfileView> {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: RoundedTitleTextField(
                   hintText: "Create new Password",
-                   controller: txtPassword,
+                  controller: txtPassword,
                   suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -348,7 +349,7 @@ class _ProfileViewState extends State<ProfileView> {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: RoundedTitleTextField(
                   hintText: "Confirm new Password",
-                   controller: txtConfirmPassword,
+                  controller: txtConfirmPassword,
                   suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
