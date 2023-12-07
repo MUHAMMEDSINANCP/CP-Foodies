@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/common/color_extension.dart';
-
 import 'package:food_delivery_app/common_widget/round_button.dart';
 import 'package:food_delivery_app/common_widget/round_icon_button.dart';
 import 'package:food_delivery_app/common_widget/round_textfield.dart';
