@@ -126,7 +126,7 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             children: [
               const SizedBox(
-                height: 64,
+                height: 20,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -156,9 +156,6 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -172,7 +169,7 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 5,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -236,7 +233,7 @@ class _HomeViewState extends State<HomeView> {
                     }),
               ),
               const SizedBox(
-                height: 30,
+                height: 5,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
